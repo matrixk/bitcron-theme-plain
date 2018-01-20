@@ -697,7 +697,8 @@ h1.article_title {
 /* Responsive ---------------------------------*/
 @media (max-width: 780px) {
     body {
-        font: 1em / 1.8em Cambria, "Microsoft Yahei", sans-serif
+        font: 1em / 1.8em Cambria, "Microsoft Yahei", sans-serif;
+        overflow-x: hidden;
     }
     h1.title {
         margin: 1em auto 0.5em auto;
