@@ -1,7 +1,9 @@
-# bitcron主题「素」
+# Bitcron主题「素」
+
+「素」效果图：
 
 ![效果图](./screenshot.png)
-[「素」效果图]
+
 
 ```table
 | 名称 | 链接 |
