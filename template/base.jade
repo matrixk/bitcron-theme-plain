@@ -1,0 +1,47 @@
+html
+    head
+        +h.headers
+        +h.load('/template/style.scss', 'font')
+
+        block title
+            if request.path.startswith('/tag/') and posts.tags
+                title= posts.tags.join('+') + ' - ' + site.title
+            elif request.path.startswith('/category/') and posts.category
+                title= posts.category.title + ' - ' + site.title
+            elif request.args.s
+                title= request.args.s + ' - ' + site.title
+            elif site.configs.sub_title
+                title= site.title + ' - ' + site.configs.sub_title
+
+    body
+        header
+            +font('hanazono')
+                h1.title:a(href='/')= site.title
+            .site_description
+                span= site.configs.sub_title
+            +site.just_nav
+        main
+            img.flowers(src="/template/image/Flower_01.svg", alt="")
+            img.flowers_bottom(src="/template/image/Flower_02.svg", alt="")
+            .post_main
+                .post_border
+                    block content
+        if not request.path.startswith('/archive/')
+            +h.paginator(pre_label="上一页",  next_label="下一页")
+
+    footer
+        #credit
+            span= '© ' + site.now.year
+            span= site.title
+        #siteinfo
+            span= '%s篇文章' %(d.get_data(types='post', return_count=true, with_page=false))
+            span= '%s字' %('{0:,}'.format(site.text_words))
+            span.oh -
+        #poweredby
+            a(href='https://mytrix.in/post/zi-zhi/bitcron-theme-plain', target='_blank') 主题「素」
+            | -
+            a(href='https://bitcron.com', target='_blank') Powered by Bitcron
+        +site.socials 
+
+    +h.back_to_top(label='△')
+

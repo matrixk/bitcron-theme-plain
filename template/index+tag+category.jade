@@ -1,0 +1,19 @@
+extends base.jade
+
+block content
+    if request.path.startswith('/tag/') and posts.tags
+        .labeltitle= '「%s」下的文章' %posts.tags.join("+")
+    elif request.path.startswith('/category/') and posts.category
+        .labeltitle= '「%s」下的文章' %posts.category.title
+        
+    if request.path.strip('/')=='category'
+        +response.redirect('/categories')
+    if request.path.strip('/')=='tag'
+        +response.redirect('/categories')
+    
+    
+    for post in posts
+        h1.post_title:a(href=post.url, target="_blank")= post.title
+        .content_list= post.content.limit(300).no_pic.plain
+
+    +h.load("/template/footer_style.scss")
