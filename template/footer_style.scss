@@ -9,3 +9,16 @@ footer {
     display: inline-block;
     float: right;
 }
+
+@media (max-width: 780px) {
+    .paginator.pager.pagination {
+        display: block;
+    }
+
+    footer {
+        text-align: center;
+        margin: 1.6em auto 4em auto;
+        display: block;
+        float: unset;
+    }
+}
