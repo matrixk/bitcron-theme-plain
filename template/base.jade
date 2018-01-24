@@ -2,6 +2,16 @@ html
     head
         +h.headers
         +h.load('/template/style.scss', 'font')
+        script(type='text/javascript').
+          function isHidden(oDiv) {
+          var vDiv = document.getElementById(oDiv);//div id用于折叠主体
+          vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';//反转
+          var oDiv1 = oDiv + '1';
+          vDiv1.style.display = (vDiv1.style.display == 'none')?'block':'none';//反转
+          var oDiv2 = oDiv + '2';
+          vDiv2.style.display = (vDiv2.style.display == 'none')?'block':'none';//反转
+          }
+
 
         block title
             if request.path.startswith('/tag/') and posts.tags
