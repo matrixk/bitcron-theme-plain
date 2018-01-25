@@ -3,15 +3,10 @@ html
         +h.headers
         +h.load('/template/style.scss', 'font')
         script(type='text/javascript').
-          function isHidden(oDiv) {
-          var vDiv = document.getElementById(oDiv);//div id用于折叠主体
-          vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';//反转
-          var oDiv1 = oDiv + '1';
-          vDiv1.style.display = (vDiv1.style.display == 'none')?'block':'none';//反转
-          var oDiv2 = oDiv + '2';
-          vDiv2.style.display = (vDiv2.style.display == 'none')?'block':'none';//反转
-          }
-
+            function isHidden(el) {
+            var vDiv = el.parentNode.nextElementSibling
+            vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';//反转
+            }
 
         block title
             if request.path.startswith('/tag/') and posts.tags
@@ -38,6 +33,33 @@ html
                     block content
         if not request.path.startswith('/archive/')
             +h.paginator(pre_label="上一页",  next_label="下一页")
+
+        script.
+            (function() {
+
+            var p = document.querySelectorAll('.content > p.md_block');
+            var regex = /^\{\{(!)?(.*)\}\}$/;
+            var len = p.length;
+            for (var i = 0; i < len; i++) {
+            var matches = p[i].firstElementChild.textContent.match(regex);
+            if (!matches) {continue;}
+
+            var legendHtml = '<p class="md_compiled md_paragraph_html"><legend class="foldup-caption" style="cursor:hand" onclick="isHidden(this)"></legend></p >'; // don't add unescaped matches[2] here
+            
+            var divHtml = '<div class="foldup" style="display:' + (matches[1] ? 'block' : 'none') + '">';
+            var lines = p[i].children;
+            var count = lines.length;
+            for (var j = 1; j < count; j++) {
+            divHtml += '<p>' + lines[j].innerHTML + '</p >';
+            }
+            divHtml += '</div>';
+            p[i].insertAdjacentHTML('beforebegin', legendHtml);
+            p[i].previousSibling.firstChild.textContent = matches[2];
+            p[i].insertAdjacentHTML('beforebegin', divHtml);
+            p[i].remove();
+            }
+            })()
+
 
     footer
         #credit

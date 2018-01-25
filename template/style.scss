@@ -513,7 +513,7 @@ p.md_compiled.md_paragraph_html {
     display: -webkit-box;
 }
 
-legend {
+.foldup-caption {
     border:1px solid #999;
     background:#fafafa;
     text-align:center;
@@ -528,26 +528,16 @@ legend {
     }
 }
 
-#div_first_part {
+.foldup {
     background: #fafafa;
     text-indent: 2em;
     border-top: 1px solid #999;
     padding: 0.1em 2em;
+    transition: all 0.8s;
     p {
         margin: 0;
-        padding: 0.5em;
+        padding: 0.5em 0;
     }
-    span {
-        margin: 0;
-        padding: 0.5em;
-    }
-}
-
-#div_second_part {
-    background: #fafafa;
-    text-indent: 2em;
-    border-top: 1px solid #999;
-    padding: 0.1em 2em;
     span {
         margin: 0;
         padding: 0.5em;
