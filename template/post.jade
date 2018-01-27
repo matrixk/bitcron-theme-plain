@@ -42,3 +42,40 @@ else
             if post.metadata.comment not in ['no', 'No', False]
                 #comments
                     +post.comments_as_html()
+        script.
+            (function() {
+
+            var p = document.querySelectorAll('#post p.md_block');
+            var regex = /^\{\{(!)?(.*)\}\}$/;
+            var len = p.length;
+            for (var i = 0; i < len; i++) {
+            var matches = p[i].firstElementChild.textContent.match(regex);
+            if (!matches) {continue;}
+
+            var legendHtml = '<p class="md_compiled md_paragraph_html"><legend class="foldup-caption" style="cursor:hand" onclick="isHidden(this)"></legend></p >'; // don't add unescaped matches[2] here
+            
+            var divHtml = '<div class="foldup" style="display:' + (matches[1] ? 'block' : 'none') + '">';
+            var lines = p[i].children;
+            var count = lines.length;
+            for (var j = 1; j < count; j++) {
+            divHtml += '<p>' + lines[j].innerHTML + '</p >';
+            }
+            divHtml += '</div>';
+            p[i].insertAdjacentHTML('beforebegin', legendHtml);
+            p[i].previousSibling.firstChild.textContent = matches[2];
+            p[i].insertAdjacentHTML('beforebegin', divHtml);
+            p[i].remove();
+            }
+            })()
+
+        script.
+            (function() {
+            var p = document.querySelectorAll('#post p.md_block');
+            for (var i = 0; i < p.length; i++) {
+            var first = p[i].firstElementChild;
+            if (first.textContent !== '!Attention') {continue;}
+            p[i].removeChild(first);
+            p[i].className = 'warning';
+            }
+            })()
+

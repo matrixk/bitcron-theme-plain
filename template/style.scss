@@ -534,6 +534,7 @@ p.md_compiled.md_paragraph_html {
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
     padding: 0.1em 2em;
+    margin-bottom: 1em;
     transition: all 0.8s;
     p {
         margin: 0;
@@ -542,6 +543,22 @@ p.md_compiled.md_paragraph_html {
     span {
         margin: 0;
         padding: 0.5em;
+    }
+}
+
+.warning {
+    padding: 2em;
+    margin: 2em 0;
+    line-height: 1.8em;
+    background: #fafafa;
+    position: relative;
+    transition: all 0.8s;
+    &:before  {
+        content: url(/template/image/warning-sign.svg);
+        top: -1.5em;
+        left: 0.5em;
+        position: absolute;
+        transition: all 0.8s;
     }
 }
 
