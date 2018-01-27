@@ -441,7 +441,7 @@ h1.article_title {
 .content {
     margin-bottom: 3em;
     h1, h2, h3, h4, h5, h6 {
-        margin: 1.5em 0; 
+        margin: 1em 0;
     }
     a {
         transition: all 0.8s;
@@ -547,8 +547,8 @@ p.md_compiled.md_paragraph_html {
 }
 
 .warning {
-    padding: 2em;
-    margin: 2em 0;
+    padding: 2em 2em 1em 2em;
+    margin: 2em 0 1em 0;
     line-height: 1.8em;
     background: #fafafa;
     position: relative;
