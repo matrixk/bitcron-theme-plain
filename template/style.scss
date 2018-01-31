@@ -19,6 +19,7 @@ body {
     color: #666;
     background: #eaeaea;
     position: relative;
+    overflow-x: hidden;
 }
 a {
     transition: all 0.8s;
@@ -68,7 +69,6 @@ blockquote {
     padding: 0.5em 2em;
     color: #999;
     margin: 2em 0;
-    font-size: 0.9em;
     line-height: 1.8em;
     background: #fafafa;
     position: relative;
@@ -81,6 +81,10 @@ blockquote {
     }
 }
 
+iframe {
+    display: block;
+    margin: 0 auto;
+}
 
 figure {
     padding: 0;
@@ -450,6 +454,11 @@ h1.article_title {
             border-bottom: 1px solid #eaeaea;
         }
     }
+    sup {
+        a {
+        border-bottom: none;
+        }
+    }
     img {
         filter: grayscale(70%);
         -webkit-filter: grayscale(70%);
@@ -473,6 +482,13 @@ h1.article_title {
         float: right;
         position: relative;
         z-index: 10;
+        ul, ol {
+            padding-left: 2.5em;
+            padding-right: 1.5em;
+        }
+    }
+    .md_line {
+        margin-bottom: 0; 
     }
 }
 
@@ -507,7 +523,7 @@ h1.article_title {
     }
 }
 
-/* Collapsible ---------------------------------*/
+/* Special ---------------------------------*/
 
 p.md_compiled.md_paragraph_html {
     display: -webkit-box;
@@ -533,7 +549,7 @@ p.md_compiled.md_paragraph_html {
     text-indent: 2em;
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
-    padding: 0.1em 2em;
+    padding: 0.5em 2em;
     margin-bottom: 1em;
     transition: all 0.8s;
     p {
@@ -547,18 +563,16 @@ p.md_compiled.md_paragraph_html {
 }
 
 .warning {
-    padding: 2em 2em 1em 2em;
-    margin: 2em 0 1em 0;
+    padding: 1.5em 2em 1em 2em;
+    margin: 2.5em 0 1em 0;
     line-height: 1.8em;
     background: #fafafa;
     position: relative;
-    transition: all 0.8s;
     &:before  {
         content: url(/template/image/warning-sign.svg);
-        top: -1.5em;
+        top: -1.2em;
         left: 0.5em;
         position: absolute;
-        transition: all 0.8s;
     }
 }
 
@@ -753,7 +767,6 @@ p.md_compiled.md_paragraph_html {
 @media (max-width: 780px) {
     body {
         font: 1em / 1.8em Cambria, "Microsoft Yahei", sans-serif;
-        overflow-x: hidden;
     }
     h1.title {
         margin: 1em auto 0.5em auto;
